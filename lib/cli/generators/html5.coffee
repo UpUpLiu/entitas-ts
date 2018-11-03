@@ -108,12 +108,12 @@ module.exports =
      * Components Class Declarations
     ###
     d0.push ""
-    for Name, properties of config.components
-      d0.push "    class #{Name}Component implements IComponent {"
-      for p in properties
-        d0.push "      public #{p};"
-      d0.push "    }"
-    d0.push ""
+    # for Name, properties of config.components
+    #   d0.push "    class #{Name}Component implements IComponent {"
+    #   for p in properties
+    #     d0.push "      public #{p};"
+    #   d0.push "    }"
+    # d0.push ""
 
 
     ###
@@ -150,7 +150,7 @@ module.exports =
           js.push "    return this;"
           js.push "  };"
 
-          d1.push "        static #{name}Component: #{Name}Component;"
+          d1.push "        static #{name}Component: #{config.namespace}.#{Name}Component;"
           d1.push "        is#{Name}: boolean;"
           d1.push "        set#{Name}(value: boolean);"
 
@@ -217,7 +217,7 @@ module.exports =
 
           d1.push "        static _#{name}ComponentPool;"
           d1.push "        static clear#{Name}ComponentPool();"
-          d1.push "        #{name}: #{Name}Component;"
+          d1.push "        #{name}: #{config.namespace}.#{Name}Component;"
           d1.push "        has#{Name}: boolean;"
           d1.push "        add#{Name}(#{properties.join(', ')});"
           d1.push "        replace#{Name}(#{properties.join(', ')});"
@@ -334,7 +334,7 @@ module.exports =
           js.push "  };"
 
           d3.push "        #{name}Entity: Entity;"
-          d3.push "        #{name}: #{Name}Component;"
+          d3.push "        #{name}: #{config.namespace}.#{Name}Component;"
           d3.push "        has#{Name}: boolean;"
           d3.push "        set#{Name}(#{properties.join(', ')}): Entity;"
           d3.push "        replace#{Name}(#{properties.join(', ')}): Entity;"
